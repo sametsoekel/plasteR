@@ -12,10 +12,3 @@ outline <- function(df){
 }
 
 
-setwd("./man")
-document()
-
-
-roxygen2
-
-getwd()

@@ -4,15 +4,15 @@
 \alias{outline}
 \title{A Cat Function}
 \usage{
-outline(df)
+outline(data)
 }
 \arguments{
-\item{love}{Do you love cats? Defaults to TRUE.}
+\item{data}{Do you love cats? Defaults to TRUE.}
 }
 \description{
 This function allows you to express your love of cats.
 }
 \examples{
-cat_function()
+outline(Hitters,plot = TRUE)
 }
 \keyword{cats}

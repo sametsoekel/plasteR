@@ -60,14 +60,6 @@ na.outline <- function(data, plot = FALSE){
 
 
 
-k <- na.outline(Hitters)
-
-
-cat("plasteR Missing Value Outcome Report\n
-    ",z,"\nss")
-
-k$
-
 
 
 

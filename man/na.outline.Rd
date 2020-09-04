@@ -2,17 +2,23 @@
 % Please edit documentation in R/na.outline.R
 \name{na.outline}
 \alias{na.outline}
-\title{A Cat Function}
+\title{NA Outline}
 \usage{
-na.outline(data, plot = FALSE)
+na.outline(data, plot_show = FALSE, limit = 20, show_over_limit = FALSE)
 }
 \arguments{
-\item{data}{Do you love cats? Defaults to TRUE.}
+\item{data}{Dataset, matrix or dataframe.}
+
+\item{plot_show}{Logical argument for plotting missing variables.}
+
+\item{limit}{The lower limit of the desired missing rate (percentage).}
+
+\item{show_over_limit}{Logical argument to print the caught index numbers of satisfied rate.}
 }
 \description{
-This function allows you to express your love of cats.
+This function allows you a report about missing values of your data.
 }
 \examples{
-na.outline(Hitters,plot = TRUE)
+na.outline(Hitters,plot_show = TRUE)
 }
-\keyword{cats}
+\keyword{missing}

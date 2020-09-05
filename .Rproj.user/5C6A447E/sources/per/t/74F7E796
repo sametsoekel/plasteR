@@ -3,22 +3,22 @@
     "path": "C:/Users/user/Desktop/plasteR/R/na.outline.R",
     "project_path": "R/na.outline.R",
     "type": "r_source",
-    "hash": "3356886928",
+    "hash": "2277224106",
     "contents": "",
     "dirty": false,
     "created": 1599316437631.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
-        "cursorPosition": "180,0",
-        "scrollLine": "156"
+        "cursorPosition": "172,1",
+        "scrollLine": "154"
     },
     "folds": "",
-    "lastKnownWriteTime": 1599316404,
+    "lastKnownWriteTime": 1599318456,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1599316404,
+    "last_content_update": 1599318456858,
     "read_only": false,
     "read_only_alternatives": []
 }

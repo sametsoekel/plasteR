@@ -18,10 +18,10 @@
 
 
 na.outline <- function(data, plot_show = FALSE,limit = 20,show_over_limit = FALSE){
-  
+
   ######## Little's missing completely at random test - start #########
-  
-  
+
+
   littles <- function (x) {
     if (!require(mvnmle))
       stop("You must have mvnmle installed to use plasteR")
@@ -73,36 +73,36 @@ na.outline <- function(data, plot_show = FALSE,limit = 20,show_over_limit = FALS
                                                         solve(cov) %*% mean)))
     }
     p.value <- 1 - pchisq(d2, df)
-    
+
     return(p.value)
-    
+
   }
-  
-  
+
+
   ######## Little's missing completely at random test - end #########
-  
-  
-  
-  
+
+
+
+
   df <- data.frame(data)
-  
-  
+
+
   number_obs <- length(df[,1])
-  
+
   missing_obs_ratio <- 100*apply(df, 1, function(x) sum(is.na(x)) / length(x))
-  
+
   names(missing_obs_ratio) <- NULL
-  
+
   missing_var_ratio <- 100*apply(df, 2, function(x) sum(is.na(x)) / length(x))
-  
+
   missing_var_ratio <- round(missing_var_ratio,digits=2)
-  
-  
-  
-  
-  
+
+
+
+
+
   paint <- function(x){
-    
+
     if(x==0){
       return("chartreuse4")
     }
@@ -122,59 +122,53 @@ na.outline <- function(data, plot_show = FALSE,limit = 20,show_over_limit = FALS
       return("darkred")
     }
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   cat("\nplasteR NA Outline\n\n\n~Little's missing completely at random test\n\np value -> ",
       littles(df),"\n\n~Missing Variable Ratios (Percentages)\n\n")
-  
+
   print(missing_var_ratio)
-  
+
   ####
-  
+
   mor_index <- which(missing_obs_ratio>limit)
   names(mor_index) <- NULL
-  
+
   ####
-  
+
   if(show_over_limit == T){
-    
-    
-    
+
+
+
     cat("\n\n~The Most Lacking Observations (> %",limit,")\n\n")
-    
+
     ifelse(length(mor_index)==0,print("None !"),print(mor_index))
-    
+
     cat("\n\n\n")
-    
-  
+
+
   }
-  
-  
-  
-  
+
+
+
+
   if(plot_show == TRUE){
-    
+
+
+
     color_vector <- sapply(missing_var_ratio,paint)
-    
-    
-    barplot(missing_var_ratio,
-            names = colnames(df),
-            ylab = "Missing Percentage",
-            ylim = c(0,50),
-            main = "plasteR NA Outline",
-            col = color_vector,
-            las = 2
-    )
-    
+
+    plt <- barplot(missing_var_ratio, col=color_vector, xaxt="n",ylab = "Missing Percentage",ylim = c(0,50),main = "plasteR NA Outline")
+
+    text(plt, par("usr")[3], labels = colnames(df), srt = 40, adj = c(1.1,1.1), xpd = TRUE, cex=0.7)
+
+
+
   }
-  
-  
+
+
 }
-
-
-
-
 

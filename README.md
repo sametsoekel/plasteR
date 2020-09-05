@@ -7,5 +7,5 @@ An R package to be at a predictive war with missing &amp; noisy data and outlier
 ``` r
 # To install the latest version from Github:
 # install.packages("devtools")
-devtools::install_github("tylermorganwall/rayshader")
+devtools::install_github("sametsoekel/plasteR")
 ```

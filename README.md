@@ -1,4 +1,4 @@
-# plasteR <img src="https://github.com/sametsoekel/plasteR/blob/master/logo.png?raw=true" align="right" height=190/> 
+# plasteR <img src="https://github.com/sametsoekel/plasteR/blob/master/plasteR_showroom/logo.png?raw=true" align="right" height=190/> 
 
 
 

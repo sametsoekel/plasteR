@@ -16,6 +16,32 @@ outlier.outline <- function(data){
 
   df <- data.frame(data)
 
+
+  margin_arbiter <-function(x){
+
+    if(sqrt(x) == round(sqrt(x))){
+
+      xlim <- sqrt(x)
+      ylim <- sqrt(x)
+
+      return(list("xlim"=xlim,"ylim"=ylim))
+    }
+    else{
+
+      xlim <- sqrt(x)
+      xlim <- floor(xlim)
+      ylim <- xlim + 1
+
+      if(xlim*ylim<x){
+        return(list("xlim"=xlim+1,"ylim"=ylim))
+      }
+      else{
+        return(list("xlim"=xlim,"ylim"=ylim))
+      }
+    }
+  }
+
+
   plotter <- function(x){
 
     #boxplot(x,horizontal = T,axes =F)
@@ -24,13 +50,22 @@ outlier.outline <- function(data){
          xlab = "",
          ylab = "")
 
-
-
   }
 
-  par(mfrow=c(3,3),new=F)
-  apply(df,2,plotter)
+  just_num_log <- unlist(lapply(df, is.numeric))
 
+  just_num <- df[,just_num_log]
+
+  margins <- margin_arbiter(length(just_num_log))
+
+
+  ## below plots
+
+  par(mfrow=c(margins$xlim,margins$ylim),new=F,mar=c(1,1,1,1))
+
+  apply(just_num,2,plotter)
+
+  ## top plots
 
 
 

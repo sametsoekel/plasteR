@@ -19,6 +19,8 @@
 
 na.outline <- function(data, plot_show = FALSE,limit = 20,show_over_limit = FALSE){
 
+  options(warn=-1)
+
   ######## Little's missing completely at random test - start #########
 
 

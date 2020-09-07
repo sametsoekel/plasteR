@@ -8,8 +8,32 @@
 #' @examples
 #' outlier.outline(Hitters,plot_show = TRUE)
 
+
+
 outlier.outline <- function(data){
-  data
+
+  options(warn=-1) ## warn silici
+
+  df <- data.frame(data)
+
+  plotter <- function(x){
+
+    #boxplot(x,horizontal = T,axes =F)
+    plot(density(x),
+         main = "",
+         xlab = "",
+         ylab = "")
+
+
+
+  }
+
+  par(mfrow=c(3,3),new=F)
+  apply(df,2,plotter)
+
+
+
+
 }
 
 

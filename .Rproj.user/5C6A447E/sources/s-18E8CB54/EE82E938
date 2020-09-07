@@ -3,7 +3,7 @@
     "path": "C:/Users/user/Desktop/plasteR/R/outlier.outline.R",
     "project_path": "R/outlier.outline.R",
     "type": "r_source",
-    "hash": "572593330",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1599399762859.0,
@@ -11,15 +11,15 @@
     "relative_order": 1,
     "properties": {
         "tempName": "Untitled1",
-        "cursorPosition": "10,28",
-        "scrollLine": "0"
+        "cursorPosition": "38,0",
+        "scrollLine": "16"
     },
     "folds": "",
-    "lastKnownWriteTime": 1599407175,
+    "lastKnownWriteTime": 1599503245,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1599407175630,
+    "last_content_update": 1599503245205,
     "read_only": false,
     "read_only_alternatives": []
 }

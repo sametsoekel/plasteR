@@ -5,7 +5,7 @@
 ## Overview
 
 An R package to be at a predictive war with missing &amp; noisy data and outliers. 
-**plasteR** is an open source package for annoying data in R environment. **plasteR** provides predictive machine learning models *(prediction algorithm can be optional)* to find each missing value of each variable and makes. Other methods of dealing with data corruption is added to the **plasteR** package day-to-day.
+**plasteR** is an open source package for annoying data in R environment. **plasteR** provides predictive machine learning models *(prediction algorithm can be optional)* to find each missing value of each variable. Other methods of dealing with data corruption is added to the **plasteR** package day-to-day.
 
 
 ## Installation

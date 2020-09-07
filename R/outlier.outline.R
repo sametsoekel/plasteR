@@ -49,27 +49,31 @@ outlier.outline <- function(data){
          main = "",
          xlab = "",
          ylab = "")
+    legend("topright",c("p value = 3","negative skew"),cex = .7)
 
   }
 
-  just_num_log <- unlist(lapply(df, is.numeric))
+  just_numeric_index <- unlist(lapply(df, is.numeric))
 
-  just_num <- df[,just_num_log]
+  just_numeric_vars <- df[,just_numeric_index]
 
-  margins <- margin_arbiter(length(just_num_log))
+  margins <- margin_arbiter(length(just_numeric_index))
 
 
   ## below plots
 
   par(mfrow=c(margins$xlim,margins$ylim),new=F,mar=c(1,1,1,1))
 
-  apply(just_num,2,plotter)
+  apply(just_numeric_vars,2,plotter)
 
   ## top plots
 
 
 
 }
+
+df <- Hitter
+outlier.outline(mtcars)
 
 
 

@@ -72,8 +72,6 @@ outlier.outline <- function(data){
 
 }
 
-df <- Hitter
-outlier.outline(mtcars)
 
 
 

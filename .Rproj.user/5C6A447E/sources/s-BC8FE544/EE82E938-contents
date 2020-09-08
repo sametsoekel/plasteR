@@ -1,0 +1,79 @@
+#' Outlier Outline
+#'
+#' This function allows you a report about outliers of your data.
+#' @param data Dataset, matrix or dataframe.
+#' @param plot_show Logical argument for plotting outliers.
+#' @keywords outlier
+#' @export
+#' @examples
+#' outlier.outline(Hitters,plot_show = TRUE)
+
+
+
+outlier.outline <- function(data){
+
+  options(warn=-1) ## warn silici
+
+  df <- data.frame(data)
+
+
+  margin_arbiter <-function(x){
+
+    if(sqrt(x) == round(sqrt(x))){
+
+      xlim <- sqrt(x)
+      ylim <- sqrt(x)
+
+      return(list("xlim"=xlim,"ylim"=ylim))
+    }
+    else{
+
+      xlim <- sqrt(x)
+      xlim <- floor(xlim)
+      ylim <- xlim + 1
+
+      if(xlim*ylim<x){
+        return(list("xlim"=xlim+1,"ylim"=ylim))
+      }
+      else{
+        return(list("xlim"=xlim,"ylim"=ylim))
+      }
+    }
+  }
+
+
+  plotter <- function(x){
+
+    #boxplot(x,horizontal = T,axes =F)
+    plot(density(x),
+         main = "",
+         xlab = "",
+         ylab = "")
+    legend("topright",c("p value = 3","negative skew"),cex = .7)
+
+  }
+
+  just_numeric_index <- unlist(lapply(df, is.numeric))
+
+  just_numeric_vars <- df[,just_numeric_index]
+
+  margins <- margin_arbiter(length(just_numeric_index))
+
+
+  ## below plots
+
+  par(mfrow=c(margins$xlim,margins$ylim),new=F,mar=c(1,1,1,1))
+
+  apply(just_numeric_vars,2,plotter)
+
+  ## top plots
+
+
+
+}
+
+df <- Hitter
+outlier.outline(mtcars)
+
+
+

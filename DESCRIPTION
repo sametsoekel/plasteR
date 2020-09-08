@@ -1,6 +1,6 @@
 Package: plasteR
 Title: A package to deal with missing & noisy data and outliers.
-Version: 0.0.0.9000
+Version: 0.1.1
 Authors@R: 
     person(given = "Samet",
            family = "Sokel",

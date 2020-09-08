@@ -53,11 +53,18 @@ outlier.outline <- function(data,plot_show = TRUE,type="density",get_skew=FALSE)
 
   dfn <- keep(df,is.numeric)
 
+  if(nrow(dfn)>=5000 || nrow(dfn)<3) {
+    stop("Sample size should be between 3 and 5000")}
+
   results <- mvn(dfn)
 
   var_names <- variable.names(dfn)
 
   skewness <- results$Descriptives$Skew
+
+  normality_test <- results$univariateNormality$Normality
+
+  normality_p_value <- results$univariateNormality$`p value`
 
   ####### some statistical calculations via MVN ######
 
@@ -85,27 +92,59 @@ outlier.outline <- function(data,plot_show = TRUE,type="density",get_skew=FALSE)
 
 
 
-    plotter <- function(x, var){
+    plotter <- function(x,var){
+
+      den <- density(x[[var]],na.rm = T)
+
+      ####### finding the p value and skewness indexes ########
+
+      skw <- skewness[which(var_names==var)]
+
+      ntest <- normality_test[which(var_names==var)]
+
+      #####
+      lenx <- max(x[[var]],na.rm = T)-min(x[[var]],na.rm = T)
+      leny <- den$bw
+
+
+      lim1 <- min(x[[var]],na.rm = T)-lenx
+      lim2 <- max(x[[var]],na.rm = T)+lenx
+
+      ####### finding the p value and skewness indexes ########
+
+      text_vector <- c("Skewness Coef.:",toString(skw),
+                       "Normality Test :",toString(ntest))
+
+      color_vector <- c("dodgerblue","dodgerblue",
+                        "darkblue","darkblue")
+
+
 
       if (!anyNA(x[[var]])){
-        plot(density(x[[var]]),
+        plot(den,
              main = var,
              xlab = "",
-             ylab = "")
+             ylab = "",
+             xlim=c(lim1,lim2))
+        legend("topright",text_vector,
+          bty = "n",cex = .9,text.col = color_vector)
       }
       else{
-        plot(density(x[[var]],na.rm = T),
-             main = var,
+
+
+        plot(den,
+             main = paste(var," (including NA's)"),
              xlab = "",
-             ylab = "s")
-        legend("center",
-               "This Var. \n Including Missing Values",
-               bty = "n",cex = 1,text.col = "darkred")
+             ylab = "",
+             xlim=c(lim1,lim2))
+        legend("topright",text_vector,
+          bty = "n",cex = .9,text.col = color_vector)
+
       }
 
     }
 
-    par(mfrow=c(xlim,ylim),mar=c(2.1,2.1,2.1,1))
+    par(mfrow=c(xlim,ylim),mar=c(2.3,2.3,2.3,1))
 
     for(vn in var_names) plotter(dfn, vn)
 
@@ -116,15 +155,5 @@ outlier.outline <- function(data,plot_show = TRUE,type="density",get_skew=FALSE)
 
 
 }
-
-outlier.outline(kj)
-
-
-
-margin_arbiter(7)
-
-
-
-
 
 

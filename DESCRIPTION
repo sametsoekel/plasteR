@@ -2,7 +2,7 @@ Package: plasteR
 Title: A package to deal with missing & noisy data and outliers.
 Version: 0.1.1
 Authors@R: 
-    person(given = "Samet",
+    person(given = "Abdussamet",
            family = "Sokel",
            role = c("aut", "cre"),
            email = "a_s@eskisehir.edu.tr",

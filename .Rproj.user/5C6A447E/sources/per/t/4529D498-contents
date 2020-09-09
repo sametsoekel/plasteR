@@ -1,12 +1,12 @@
 #' Outlier Outline
 #'
-#' This function allows you a report about outliers and normal distribution checks of your data.
+#' This function allows you a report about structural information, mainly outliers, and normal distribution checks of your data.
 #' @param data Dataset, matrix or dataframe.
 #' @param plot_show Logical argument for plotting.
-#' @param type Default "den", Logical argument for plot type for each numeric variable. boxplot ("box"), density ("den").
+#' @param type Logical argument for plot type for each numeric variable. boxplot ("box"), density ("den").
 #' @param get_skew if TRUE prints each skewness coefficient for each variable on the plot
 #' @param get_normality if TRUE prints results of Shapiro-Wilk normality test for each variable on the plot
-#' @param return_clean_data if TRUE the object of outlier.outline function includes a dataframe without multivarite outliers (via robust principal component analysis)
+#' @param return_clean_data if TRUE the object of outlier.outline function includes a dataframe without multivariate outliers (via robust principal component analysis)
 #' @keywords outlier, boxplot, density
 #' @export
 #' @examples
@@ -74,7 +74,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   normality_test <- results$univariateNormality$Normality
 
-  normality_p_value <- results$univariateNormality$`p value`
+  normality_p_value <- as.numeric(results$univariateNormality$`p value`)
 
   mv_outliers <- results_mvo$outliers
 
@@ -199,3 +199,4 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
 }
 
+outlier.outline(Hitters)

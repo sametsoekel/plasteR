@@ -18,7 +18,7 @@ outlier.outline(
 
 \item{plot_show}{Logical argument for plotting.}
 
-\item{type}{Default "den", Logical argument for plot type for each numeric variable. boxplot ("box"), density ("den").}
+\item{type}{Logical argument for plot type for each numeric variable. boxplot ("box"), density ("den").}
 
 \item{get_skew}{if TRUE prints each skewness coefficient for each variable on the plot}
 
@@ -27,7 +27,7 @@ outlier.outline(
 \item{return_clean_data}{if TRUE the object of outlier.outline function includes a dataframe without multivarite outliers (via robust principal component analysis)}
 }
 \description{
-This function allows you a report about outliers and normal distribution checks of your data.
+This function allows you a report about structural information, mainly outliers, and normal distribution checks of your data.
 }
 \examples{
 outlier.outline(Hitters,plot_show = TRUE,type="box",get_skew = TRUE,get_normality = FALSE,

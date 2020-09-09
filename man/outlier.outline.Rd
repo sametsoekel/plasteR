@@ -4,17 +4,35 @@
 \alias{outlier.outline}
 \title{Outlier Outline}
 \usage{
-outlier.outline(data)
+outlier.outline(
+  data,
+  plot_show = TRUE,
+  type = "den",
+  get_skew = TRUE,
+  get_normality = TRUE,
+  return_clean_data = TRUE
+)
 }
 \arguments{
 \item{data}{Dataset, matrix or dataframe.}
 
-\item{plot_show}{Logical argument for plotting outliers.}
+\item{plot_show}{Logical argument for plotting.}
+
+\item{type}{Default "den", Logical argument for plot type for each numeric variable. boxplot ("box"), density ("den").}
+
+\item{get_skew}{if TRUE prints each skewness coefficient for each variable on the plot}
+
+\item{get_normality}{if TRUE prints results of Shapiro-Wilk normality test for each variable on the plot}
+
+\item{return_clean_data}{if TRUE the object of outlier.outline function includes a dataframe without multivarite outliers (via robust principal component analysis)}
 }
 \description{
-This function allows you a report about outliers of your data.
+This function allows you a report about outliers and normal distribution checks of your data.
 }
 \examples{
-outlier.outline(Hitters,plot_show = TRUE)
+outlier.outline(Hitters,plot_show = TRUE,type="box",get_skew = TRUE,get_normality = FALSE,
+return_clean_data = TRUE)
 }
-\keyword{outlier}
+\keyword{boxplot,}
+\keyword{density}
+\keyword{outlier,}

@@ -24,7 +24,7 @@ outlier.outline(
 
 \item{get_normality}{if TRUE prints results of Shapiro-Wilk normality test for each variable on the plot}
 
-\item{return_clean_data}{if TRUE the object of outlier.outline function includes a dataframe without multivarite outliers (via robust principal component analysis)}
+\item{return_clean_data}{if TRUE the object of outlier.outline function includes a dataframe without multivariate outliers (via robust principal component analysis)}
 }
 \description{
 This function allows you a report about structural information, mainly outliers, and normal distribution checks of your data.

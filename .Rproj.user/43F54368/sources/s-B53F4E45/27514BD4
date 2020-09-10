@@ -1,0 +1,24 @@
+{
+    "id": "27514BD4",
+    "path": "~/Desktop/plasteR/R/na.outline.R",
+    "project_path": "R/na.outline.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1599749212046.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "80,24",
+        "scrollLine": "77"
+    },
+    "folds": "22|27|74|2|\n83|33|94|0|\n102|23|122|2|\n131|37|137|0|\n154|27|165|2|\n170|24|182|2|\n",
+    "lastKnownWriteTime": 1599750320,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1599750320107,
+    "read_only": false,
+    "read_only_alternatives": []
+}

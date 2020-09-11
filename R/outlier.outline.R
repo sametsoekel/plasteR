@@ -62,7 +62,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   dfn_nona <- na.omit(dfn)
 
-  results_mvo<-mvoutlier::aq.plot(keep(dfn_nona,is.numeric))
+  results_mvo<-mvoutlier::aq.plot(purrr::keep(dfn_nona,is.numeric))
 
   if(nrow(dfn)>=5000 || nrow(dfn)<3) {
     stop("Sample size should be between 3 and 5000")}

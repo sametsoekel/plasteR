@@ -3,3 +3,4 @@
 export(na.outline)
 export(outlier.outline)
 export(underlimit)
+export(withnomvoutlier)

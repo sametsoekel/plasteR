@@ -24,4 +24,3 @@ withnomvoutlier <- function(data,keepoutlier=FALSE){
 }
 
 
-withnomvoutlier(Hitters)

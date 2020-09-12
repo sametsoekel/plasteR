@@ -1,0 +1,9 @@
+#' Get observations over the limit
+#'
+#' This function returns deleted
+#' @param data Dataset, matrix or dataframe.
+#' @param limit The lower limit of the desired missing rate (percentage).
+#' @keywords missing, under limit
+#' @export
+#' @examples
+#' getoverlimit(Hitters,plot_show = TRUE)

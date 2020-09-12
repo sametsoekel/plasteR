@@ -83,8 +83,6 @@ na.outline <- function(data, plot_show = FALSE,limit = 20,show_over_limit = FALS
 
   ######### calculations of data ###########
 
-  number_obs <- length(df[,1])
-
   missing_obs_ratio <- 100*apply(df, 1, function(x) sum(is.na(x)) / length(x))
 
   names(missing_obs_ratio) <- NULL

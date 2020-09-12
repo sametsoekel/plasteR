@@ -10,6 +10,7 @@ outlier.outline(
   type = "den",
   get_skew = TRUE,
   get_normality = TRUE,
+  normality_as = "log",
   return_clean_data = TRUE
 )
 }
@@ -23,6 +24,8 @@ outlier.outline(
 \item{get_skew}{if TRUE prints each skewness coefficient for each variable on the plot}
 
 \item{get_normality}{if TRUE prints results of Shapiro-Wilk normality test for each variable on the plot}
+
+\item{normality_as}{Default "log", return type of normality information. p value ("pval"), logical ("log"), no info ("NULL")}
 
 \item{return_clean_data}{if TRUE the object of outlier.outline function includes a dataframe without multivariate outliers (via robust principal component analysis)}
 }

@@ -10,17 +10,23 @@
 
 withnomvoutlier <- function(data,keepoutlier=FALSE){
 
-  df <- data.frame(data)
+  df <- data.frame(Hitters)
 
   df <- na.omit(df)
+
+
+
 
   ###### detection multivariate outlier indexes #######
 
 
-  index <- plasteR::outlier.outline(data)
+  results_mvo <- mvoutlier::aq.plot(purrr::keep(df,is.numeric))
 
-  df[index$mv_outliers,]
+  mvindex <- results_mvo[["outliers"]]
+
+  return(df[mvindex,])
 
 }
+
 
 

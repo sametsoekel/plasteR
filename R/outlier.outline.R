@@ -89,7 +89,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   normality_p_value <- as.numeric(results$univariateNormality$`p value`)
 
-  mv_outliers <- results_mvo$outliers
+  mv_outliers <- results_mvo[["outliers"]]
 
   ####### some statistical calculations via MVN and mvoutlier #######
 
@@ -242,7 +242,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   return(
     list(
-      "mv_outliers"=ifelse(return_clean_data==T,dfn_nona[mv_outliers,],"NULL"),
+      "mv_outliers"=ifelse(return_clean_data==T,dfn[!mv_outliers,],"NULL"),
       "normality_test"=nvector
     )
   )
@@ -252,4 +252,4 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
 
 
-
+outlier.outline(Hitters)

@@ -20,7 +20,14 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
                             normality_as="log",return_clean_data=TRUE){
 
 
-  ####### margin arbiter func.-start ########
+  ####### plot par reseters func. #######
+
+  opar <- par()
+
+  ####### plot par reseters func. #######
+
+
+  ####### plot margin arbiter func.-start ########
 
   margin_arbiter <-function(x){
 
@@ -54,6 +61,11 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   ####### some statistical calculations via MVN and mvoutlier ######
 
+
+  #### a part of report output ####
+  cat("plasteR Outlier Outline\n\n\n")
+  #### a part of report output ####
+
   options(warn=-1) ## warn hider
 
   df <- data.frame(data)
@@ -63,7 +75,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
   dfn_nona <- na.omit(dfn)
 
   results_mvo<-mvoutlier::aq.plot(purrr::keep(dfn_nona,is.numeric))
-
+  cat("\n\n\n")
   if(nrow(dfn)>=5000 || nrow(dfn)<3) {
     stop("Sample size should be between 3 and 5000")}
 
@@ -77,7 +89,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   normality_p_value <- as.numeric(results$univariateNormality$`p value`)
 
-  mv_outliers <- results_mvo$outliers
+  mv_outliers <- results_mvo[["outliers"]]
 
   ####### some statistical calculations via MVN and mvoutlier #######
 
@@ -101,96 +113,110 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   ######## below plots  ########
 
-  if(plot_show==TRUE){
+
+  if(type=="den"){
+    if(plot_show==TRUE){
 
 
 
-    plotter <- function(x,var){
+      plotter_den <- function(x,var){
 
-      den <- density(x[[var]],na.rm = T)
+        den <- density(x[[var]],na.rm = T)
 
-      ####### finding the p value and skewness indexes ########
+        ####### finding the p value and skewness indexes ########
 
-      skw <- skewness[which(var_names==var)]
+        skw <- skewness[which(var_names==var)]
 
-      ntest <- normality_test[which(var_names==var)]
+        ntest <- normality_test[which(var_names==var)]
 
-      #####
-      lenx <- max(x[[var]],na.rm = T)-min(x[[var]],na.rm = T)
+        #####
+        lenx <- max(x[[var]],na.rm = T)-min(x[[var]],na.rm = T)
 
-      lim1 <- min(x[[var]],na.rm = T)-lenx
-      lim2 <- max(x[[var]],na.rm = T)+lenx
+        lim1 <- min(x[[var]],na.rm = T)-lenx
+        lim2 <- max(x[[var]],na.rm = T)+lenx
 
-      ####### finding the p value and skewness indexes ########
-
-
+        ####### finding the p value and skewness indexes ########
 
 
 
-      ################# checking given logical arguments ######################
 
-      if(get_skew==T){
-        skw_txt <- c("Skewness Coef.:",toString(skw))
+
+        ################# checking given logical arguments ######################
+
+        if(get_skew==T){
+          skw_txt <- c("Skewness Coef.:",toString(skw))
+        }
+        else{
+          skw_txt <- c("","")
+        }
+
+        if(get_normality==T){
+          nrm_txt <- c("Normality Test :",toString(ntest))
+        }
+        else{
+          nrm_txt <- c("","")
+        }
+
+
+
+        text_vector <- c(skw_txt,nrm_txt)
+
+        color_vector <- c("dodgerblue","dodgerblue",
+                          "darkblue","darkblue")
+
+        ################# checking given logical arguments ######################
+
+
+
+
+        if (!anyNA(x[[var]])){
+          plot(den,
+               main = c(var),
+               xlab = "",
+               ylab = "",
+               xlim=c(lim1,lim2),
+               col.main=c("black"))
+          legend("topright",text_vector,
+                 bty = "n",cex = .9,text.col = color_vector)
+        }
+        else{
+
+
+          plot(den,
+               main = c(var," (including NA's)"),
+               xlab = "",
+               ylab = "",
+               xlim=c(lim1,lim2),
+               col.main="red")
+          legend("topright",text_vector,
+                 bty = "n",cex = .9,text.col = color_vector)
+
+        }
+
       }
-      else{
-        skw_txt <- c("","")
-      }
 
-      if(get_normality==T){
-        nrm_txt <- c("Normality Test :",toString(ntest))
-      }
-      else{
-        nrm_txt <- c("","")
-      }
+      par(mfrow=c(xlim,ylim),mar=c(2.3,2.3,2.3,1))
 
+      for(vn in var_names) plotter_den(dfn, vn)
 
-
-      text_vector <- c(skw_txt,nrm_txt)
-
-      color_vector <- c("dodgerblue","dodgerblue",
-                        "darkblue","darkblue")
-
-      ################# checking given logical arguments ######################
-
-
-
-
-      if (!anyNA(x[[var]])){
-        plot(den,
-             main = c(var),
-             xlab = "",
-             ylab = "",
-             xlim=c(lim1,lim2),
-             col.main=c("black"))
-        legend("topright",text_vector,
-          bty = "n",cex = .9,text.col = color_vector)
-      }
-      else{
-
-
-        plot(den,
-             main = c(var," (including NA's)"),
-             xlab = "",
-             ylab = "",
-             xlim=c(lim1,lim2),
-             col.main="red")
-        legend("topright",text_vector,
-          bty = "n",cex = .9,text.col = color_vector)
-
-      }
+      par(opar)
 
     }
-
-    par(mfrow=c(xlim,ylim),mar=c(2.3,2.3,2.3,1))
-
-    for(vn in var_names) plotter(dfn, vn)
-
   }
+
+
+  else if(type=="box"){
+    if(plot_show==TRUE){
+      par(opar)
+      boxplot(df,horizontal = T)
+    }
+  }
+
 
 
   ####### normality result vector ########
 
-  normality_vector<-MVN::mvn(keep(df,is.numeric))
+  normality_vector<-MVN::mvn(purrr::keep(df,is.numeric))
   if(normality_as=="log"){
     nvector <- normality_vector$univariateNormality$Normality
   }
@@ -216,7 +242,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   return(
     list(
-      "without_mv_outliers"=ifelse(return_clean_data==T,dfn_nona[!mv_outliers,],"NULL"),
+      "mv_outliers"=ifelse(return_clean_data==T,dfn[!mv_outliers,],"NULL"),
       "normality_test"=nvector
     )
   )
@@ -224,3 +250,6 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
 }
 
+
+
+outlier.outline(Hitters)

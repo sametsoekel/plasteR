@@ -242,7 +242,7 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
   univariatedetect <- function(x){
     if(is.numeric(x)){
-      k<-boxplot(x)
+      k<-boxplot.stats(x)
       outliers<-k$out
       z<-which(x%in% outliers)
 
@@ -284,8 +284,3 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
 
 
 }
-
-
-
-
-

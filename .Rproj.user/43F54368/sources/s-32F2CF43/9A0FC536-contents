@@ -235,57 +235,20 @@ outlier.outline <- function(data,plot_show = TRUE,type="den",get_skew=TRUE,get_n
   ####### normality result vector ########
 
 
+
+
+
   ######## top plots ########
-
-
-  ######### keeping univariate outliers #########
-
-  univariatedetect <- function(x){
-    if(is.numeric(x)){
-      k<-boxplot(x)
-      outliers<-k$out
-      z<-which(x%in% outliers)
-
-      return(z)
-    }
-    else{
-      return(NA)
-    }
-
-  }
-
-  univariateoutliers<-lapply(df, univariatedetect)
-
-  ######### keeping univariate outliers #########
-
-
-
-
-
-  ########## making clean data ##########
-
-  if(return_clean_data==T){
-    clean_data <- dfn_nona[!mv_outliers,]
-  }
-  else{
-    clean_data <- data.frame()
-  }
-
-  ########## making clean data ##########
-
 
   return(
     list(
-      "univariate_outliers"=univariateoutliers,
-      "mv_outliers"=clean_data,
+      "mv_outliers"=ifelse(return_clean_data==T,dfn[!mv_outliers,],"NULL"),
       "normality_test"=nvector
     )
   )
 
 
 }
-
-
 
 
 

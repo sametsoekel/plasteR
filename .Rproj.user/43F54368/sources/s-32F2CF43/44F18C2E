@@ -1,24 +1,24 @@
 {
-    "id": "9A0FC536",
+    "id": "44F18C2E",
     "path": "~/Desktop/plasteR/R/outlier.outline.R",
     "project_path": "R/outlier.outline.R",
     "type": "r_source",
-    "hash": "1948520270",
+    "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1599946729268.0,
+    "created": 1599998914214.0,
     "source_on_save": false,
     "relative_order": 3,
     "properties": {
-        "cursorPosition": "85,28",
-        "scrollLine": "81"
+        "cursorPosition": "286,0",
+        "scrollLine": "278"
     },
-    "folds": "116|18|204|2|\n207|23|212|2|\n",
-    "lastKnownWriteTime": 1599956248,
+    "folds": "64|31|65|38|\n116|18|204|2|\n207|23|212|2|\n266|27|268|2|\n269|7|271|2|\n",
+    "lastKnownWriteTime": 1600003591,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1599956270920,
+    "last_content_update": 1600003591614,
     "read_only": false,
     "read_only_alternatives": []
 }
